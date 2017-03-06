@@ -4,13 +4,22 @@ function solution(N) {
     let actualGap = 0;
     let binary = N.toString(2);
     
-    for (let i = 0; i < binary.length; i++) {
-        if (binary[i] === '0') {
-            actualGap++;
-        } else if (actualGap > longestGap) {
-            longestGap = actualGap;
+    while (N % 2 === 0) {
+        N = Math.floor(N / 2);
+    }
+    
+    while (N > 0) {
+        if (N % 2 === 1) {
+            if (actualGap > longestGap) {
+                longestGap = actualGap;
+            }
+            
             actualGap = 0;
+        } else {
+            actualGap++;
         }
+        
+        N = Math.floor(N / 2);
     }
     
     return longestGap;
