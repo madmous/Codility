@@ -6,7 +6,7 @@ function solution(A) {
     let valuesByIndex = {};
     let result = 1;
     
-    for (let i = 0; i < A.length; i++) {
+    for (let i = 0, aLength = A.length; i < aLength; i++) {
         let currentValue = A[i];
         
         if (!valuesByIndex[currentValue - 1]) {
@@ -18,14 +18,16 @@ function solution(A) {
         
     }
     
+    let valuesByIndexKeys = Object.keys(valuesByIndex);
+    
     if (result === 1) {
-        for (let key in valuesByIndex) {
-            let keyValue = parseInt(key);
-            
+        for (let i = 0, len = valuesByIndexKeys.length; i < len; i++) {
+            let keyValue = parseInt(valuesByIndexKeys[i]);
+                
             if (keyValue !== 0 && !valuesByIndex[keyValue - 1]) {
                 result = 0;
                 break;
-            }
+            } 
         }
     }
     
